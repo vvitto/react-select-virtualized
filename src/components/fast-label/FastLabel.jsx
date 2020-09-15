@@ -5,18 +5,24 @@ const configFastLabelOption = {
   context: 'menu',
 };
 
-const FastLabel = memo(({ data, setValue, isHovering, isSelected, isFocused, style, formatOptionLabel }) => {
-  const onClickHandler = () => setValue(data);
+const FastLabel = memo(({ data, setValue, isHovering, isSelected, isDisabled, isFocused, style, formatOptionLabel }) => {
+  const onClickHandler = () => {
+    if(!isDisabled) {
+      setValue(data)
+    }
+  };
 
   const label = useMemo(() => (formatOptionLabel ? formatOptionLabel(data, configFastLabelOption) : data.label), [
     data,
     formatOptionLabel,
   ]);
 
+  const hasFocusStyle = (isHovering || isFocused) && !isDisabled;
+
   return (
     <div
       className={`${
-        isSelected ? 'fast-option-selected' : isHovering || isFocused ? 'fast-option-focused' : ''
+        isSelected ? 'fast-option-selected' : hasFocusStyle ? 'fast-option-focused' : ''
       } fast-option ${data.__isNew__ ? 'fast-option-create' : ''}`}
       style={style}
       onClick={onClickHandler}

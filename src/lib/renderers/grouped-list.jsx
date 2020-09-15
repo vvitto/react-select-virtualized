@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { isGroupHeader } from '@rsv-lib/getters';
 import { FastOption } from '@rsv-components/fast-option';
 
@@ -29,6 +29,7 @@ export const groupVirtualizedListRowRenderer = ({
           data={thisProps.data}
           setValue={thisProps.setValue}
           isVisible={isVisible}
+          isDisabled={thisProps.isDisabled}
           isScrolling={isScrolling}
           optionHeight={optionHeight}
           isFocused={thisProps.isFocused}
