@@ -46,7 +46,7 @@ export const group7 = buildOptionsSize(40);
 export const group8 = buildOptionsSize(40);
 
 export const opsGroup = [
-  { label: 'TEST GROUP' },
+  { label: 'TEST GROUP', options: [{ label: 'Disabled option', value: 'disabled', isDisabled: true }]},
   { label: `Group ${random.maleFirstName()}`, options: group1 },
   { label: `Group ${random.maleFirstName()}`, options: group2 },
   { label: `Group ${random.maleFirstName()}`, options: group3 },
