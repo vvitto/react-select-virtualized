@@ -1,6 +1,6 @@
 {
   "name": "@vvitto/react-select-virtualized",
-  "version": "2.5.20",
+  "version": "2.5.21",
   "description": "Select virtualized component using: react-select v3 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
