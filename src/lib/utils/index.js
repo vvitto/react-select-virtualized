@@ -75,7 +75,7 @@ export const getFilteredItems = ({ inputValue, memoOptions, grouped, filterOptio
 };
 
 export const flattenGroupedOptions = (reactComponent) =>
-  (reactComponent && reactComponent.length ? reactComponent : [])
+  (reactComponent && Array.isArray(reactComponent) ? reactComponent : [])
     .map((child) => [
       {
         props: {
@@ -85,12 +85,20 @@ export const flattenGroupedOptions = (reactComponent) =>
           config: child.props.data.config
         },
       },
-      ...child.props.children,
+      ...(typeof child.props.children !== 'string' ? child.props.children : []) ,
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
+function getOptionsLength(item) {
+  if(item.options) {
+    return item.options.length;
+  }
+
+  return 0;
+}
+
 // 1 is for the group item
-export const calculateTotalGroupedListSize = (options) => options.reduce((acc, item) => acc + 1 + item.options.length, 0);
+export const calculateTotalGroupedListSize = (options) => options.reduce((acc, item) => acc + 1 + getOptionsLength(item), 0);
 
 export const isDifferentValueOption = (op, val) =>
   (op && val && op.value != val.value) || (!op && !!val) || (!!op && !val);
