@@ -21,7 +21,9 @@ const FastLabel = memo(({ data, setValue, isHovering, isSelected, isDisabled, is
 
   return (
     <div
-      className={`${
+      className={`
+      ${isDisabled ? 'fast-option-disabled' : ''}
+      ${
         isSelected ? 'fast-option-selected' : hasFocusStyle ? 'fast-option-focused' : ''
       } fast-option ${data.__isNew__ ? 'fast-option-create' : ''}`}
       style={style}
